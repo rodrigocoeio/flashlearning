@@ -3,7 +3,12 @@ import categories from "./categories.js";
 export default {
     game: {
         started: false,
-        category: 0
+        category: 'all',
+        cardIndex: 0,
+        audio: false,
+        image: false,
+        text: false,
+        translation: false
     },
 
     categories: categories

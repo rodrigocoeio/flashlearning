@@ -14,12 +14,12 @@ const listenKeyBoardEvents = function (e) {
 
     // Previous card on left arrow
     if (e.keyCode == 37) {
-  
+      store.previousCard();
     }
 
     // Next card on right arrow
     if (e.keyCode == 39) {
-
+      store.nextCard();
     }
 
     // Quit Game on Esc

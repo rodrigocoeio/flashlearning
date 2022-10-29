@@ -34,8 +34,8 @@ const readFolder = async function (folder) {
 
         cards.push({
           name: formatCardName(cardName),
-          image: fs.existsSync(cardImage) ? cardImage : false,
-          audio: fs.existsSync(cardAudio) ? cardAudio : false,
+          image: fs.existsSync(folder + "/" + cardImage) ? cardImage : false,
+          audio: fs.existsSync(folder + "/" + cardAudio) ? cardAudio : false,
           translation: fs.readFileSync(fullFilePath, {
             encoding: "utf8",
             flag: "r",
