@@ -38,12 +38,12 @@
 
                     <li class="CardIndex nav-item">
                         &nbsp;&nbsp;
-                        {{ cardIndex + 1 }} / {{ cardsNumber }}
+                        {{ cardsNumber > 0 ? cardIndex + 1 : 0 }} / {{ cardsNumber }}
                     </li>
 
                     <!-- Next Card -->
                     <li class="nav-item">
-                        <button id="nextCardButton" class="btn btn-success" :disabled="((cardIndex + 1) == cardsNumber)"
+                        <button id="nextCardButton" class="btn btn-success" :disabled="((cardIndex + 1) >= cardsNumber)"
                             @click.stop.prevent="nextCard">
                             Next Card
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -58,7 +58,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Audio Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="game.audio || !card.audio" @click="playAudio">
+                        <button :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
                             <img src="/images/audio.png" height="36">
                         </button>
                     </li>
@@ -72,14 +72,14 @@
 
                     <!-- Text Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.text ? 'btn-primary' : 'btn-secondary']" @click="toggleText">
+                        <button :class="['btn', game.text ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleText">
                             <img src="/images/text.png" height="36">
                         </button>
                     </li>
 
                     <!-- Translation Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" @click="toggleTranslation" v-show="card.translation">
+                        <button :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
                             <img src="/images/translation.png" height="36">
                         </button>
                     </li>

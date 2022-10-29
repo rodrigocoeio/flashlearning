@@ -1,6 +1,8 @@
 export default {
   startGame() {
     this.game.started = true;
+    this.game.cardIndex = 0;
+    this.game.audio = false;
     this.game.image = false;
     this.game.text = false;
     this.game.translation = false;
@@ -13,18 +15,24 @@ export default {
   },
 
   playCardAudio() {
+    this.stopAudio();
+    
+    const store = this;
     const audioFile = "/cards/" + this.categoryName + "/" + this.card.audio;
 
     if (this.card.audio) {
       this.game.audio = playAudio(audioFile);
       this.game.audio.onended = function () {
-        this.game.audio = false;
+        //store.game.audio = false;
       };
     }
   },
 
   stopAudio() {
-    if (this.game.audio) this.game.audio.pause();
+    if (this.game.audio){
+      this.game.audio.pause();
+      this.game.audio = false;
+    }
   },
 
   selectCategory(category) {

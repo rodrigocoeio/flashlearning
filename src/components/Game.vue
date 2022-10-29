@@ -8,12 +8,12 @@
 
             <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.text && !game.translation" @click="playAudio">
 
-            <img :src="image" v-if="card.image" v-show="game.image" class="CardImage">
-
             <div>
                 <h1 v-show="game.text">{{ card.name }}</h1>
-                <h3 class="Translation" v-show="game.translation">{{ card.translation }}</h3>
+                <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
             </div>
+
+            <img :src="image" v-if="card.image" v-show="game.image" class="CardImage">
         </div>
     </div>
 </template>
@@ -73,21 +73,23 @@ export default {
 
 .CardBox {
     width: calc(100% - 200px);
+    max-height: calc(100% - 100px);
     height: 100%;
     padding: 30x;
     margin: auto;
+    overflow: hidden;
+}
+
+.Card img {
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .Card {
     border: 4px dashed black;
     padding: 30px;
-
+    height: 100%;
 }
-
-.CardImage {
-    height: 300px;
-}
-
 .GuessWhat {
     cursor: pointer;
 }
