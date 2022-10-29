@@ -38,7 +38,7 @@ export default {
         },
 
         image() {
-            return "/cards/" + this.currentCategory.name + "/" + this.card.image;
+            return "/cards/" + this.card.category + "/" + this.card.image;
         },
 
         cards() {
