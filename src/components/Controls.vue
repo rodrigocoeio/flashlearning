@@ -70,9 +70,9 @@
                         </button>
                     </li>
 
-                    <!-- Text Button -->
+                    <!-- Name Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.text ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleText">
+                        <button :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
                             <img src="/images/text.png" height="36">
                         </button>
                     </li>
@@ -152,8 +152,8 @@ export default {
             this.game.image = !this.game.image;
         },
 
-        toggleText() {
-            this.game.text = !this.game.text;
+        toggleName() {
+            this.game.name = !this.game.name;
         },
 
         toggleTranslation() {

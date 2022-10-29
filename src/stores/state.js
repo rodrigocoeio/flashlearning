@@ -7,7 +7,7 @@ export default {
         cardIndex: 0,
         audio: false,
         image: false,
-        text: false,
+        name: false,
         translation: false
     },
 

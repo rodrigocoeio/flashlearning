@@ -6,14 +6,14 @@
     <div class="CardBox">
         <div :class="['Card', index == 0 ? 'active' : '']" v-for="card,index in cards" v-show="cardIndex === index">
 
-            <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.text && !game.translation" @click="playAudio">
+            <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.name && !game.translation" @click="playAudio">
 
             <div>
-                <h1 v-show="game.text">{{ card.name }}</h1>
+                <h1 v-show="game.name">{{ card.name }}</h1>
                 <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
             </div>
 
-            <img :src="image" v-if="card.image" v-show="game.image" class="CardImage">
+            <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
         </div>
     </div>
 </template>
@@ -83,6 +83,7 @@ export default {
 .Card img {
     max-height: 100%;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .Card {

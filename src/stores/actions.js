@@ -4,7 +4,7 @@ export default {
     this.game.cardIndex = 0;
     this.game.audio = false;
     this.game.image = false;
-    this.game.text = false;
+    this.game.name = false;
     this.game.translation = false;
   },
 
@@ -18,7 +18,7 @@ export default {
     this.stopAudio();
     
     const store = this;
-    const audioFile = "/cards/" + this.categoryName + "/" + this.card.audio;
+    const audioFile = "/cards/" + this.card.category + "/" + this.card.audio;
 
     if (this.card.audio) {
       this.game.audio = playAudio(audioFile);
@@ -31,7 +31,6 @@ export default {
   stopAudio() {
     if (this.game.audio){
       this.game.audio.pause();
-      this.game.audio = false;
     }
   },
 
@@ -44,7 +43,7 @@ export default {
 
     if (this.game.cardIndex > 0) {
       this.game.image = false;
-      this.game.text = false;
+      this.game.name = false;
       this.game.translation = false;
       this.game.cardIndex--;
     }
@@ -55,7 +54,7 @@ export default {
 
     if (this.game.cardIndex + 1 < this.cardsNumber) {
       this.game.image = false;
-      this.game.text = false;
+      this.game.name = false;
       this.game.translation = false;
       this.game.cardIndex++;
     }
