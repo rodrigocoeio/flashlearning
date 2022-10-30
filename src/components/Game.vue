@@ -87,7 +87,7 @@ export default {
 }
 
 .Card {
-    border: 4px dashed black;
+    border: 4px dashed red;
     padding: 30px;
     height: 100%;
 }
