@@ -1,6 +1,7 @@
 export default {
   currentCategory() {
     const categoryName = this.game.category;
+    const subcategoryName = this.game.subcategory;
 
     // All Cards
     if (categoryName === "all") {
@@ -19,9 +20,14 @@ export default {
       return allCardsCategory;
     }
 
-    return this.categories[categoryName]
+    let category = this.categories[categoryName]
       ? this.categories[categoryName]
       : false;
+
+    if(subcategoryName)
+      return category.categories[subcategoryName];
+
+    return category;
   },
 
   categoryName() {

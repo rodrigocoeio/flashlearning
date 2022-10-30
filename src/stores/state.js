@@ -4,6 +4,7 @@ export default {
     game: {
         started: false,
         category: 'all',
+        subcategory: 0,
         cardIndex: 0,
         audio: false,
         image: false,

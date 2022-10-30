@@ -19,6 +19,7 @@ const readFolder = async function (folder, categoryName) {
       const category = {
         name: capitalizeFirstLetter(fileName),
         cards: categoryRead.cards,
+        categories: categoryRead.categories,
       };
 
       categories[fileName] = category;

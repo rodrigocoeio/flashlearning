@@ -50,6 +50,10 @@ export default {
     this.game.category = category;
   },
 
+  selectSubCategory(subcategory) {
+    this.game.subcategory = subcategory;
+  },
+
   previousCard() {
     if (this.game.audio) this.stopAudio();
 
