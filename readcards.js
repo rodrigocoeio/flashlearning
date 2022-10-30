@@ -30,17 +30,19 @@ const readFolder = async function (folder, categoryName) {
 
         const cardName = removeExtensionFromFileName(fileName);
         const cardImage = cardName + ".jpg";
-        const cardAudio = cardName + ".mp3"
+        const cardAudio = cardName + ".mp3";
+        const cardFileText = fs.readFileSync(fullFilePath, {
+          encoding: "utf8",
+          flag: "r",
+        });
+        const cardFileTextLines = cardFileText.split("\n");
 
         cards.push({
-          name: formatCardName(cardName),
+          name: cardFileTextLines.length>1 ? cardFileTextLines[0] : formatCardName(cardName),
           category: categoryName,
           image: fs.existsSync(folder + "/" + cardImage) ? cardImage : false,
           audio: fs.existsSync(folder + "/" + cardAudio) ? cardAudio : false,
-          translation: fs.readFileSync(fullFilePath, {
-            encoding: "utf8",
-            flag: "r",
-          }),
+          translation: cardFileTextLines.length>1 ? cardFileTextLines[1] : cardFileText,
         });
       }
     }
