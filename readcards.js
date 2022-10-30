@@ -15,7 +15,8 @@ const readFolder = async function (folder, categoryName) {
     if (fs.lstatSync(fullFilePath).isDirectory()) {
       if (!silenceMode) console.log("reading category: " + fileName);
 
-      const categoryRead = await readFolder(fullFilePath, fileName);
+      const categoryNameRead = categoryName ? categoryName + "/" + fileName : fileName;
+      const categoryRead = await readFolder(fullFilePath, categoryNameRead);
       const category = {
         name: capitalizeFirstLetter(fileName),
         cards: categoryRead.cards,
