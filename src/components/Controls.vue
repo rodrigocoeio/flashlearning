@@ -58,32 +58,31 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Audio Button -->
                     <li class="nav-item">
-                        <button title="Press A S or Space" :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
+                        <button id="audioButton" title="Press A S or Space" :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
                             <img src="/images/audio.png" height="36">
                         </button>
                     </li>
 
-                    <!-- Picture Button -->
+                    <!-- Image Button -->
                     <li class="nav-item">
-                        <button title="Press I or P" :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
+                        <button id="imageButton" title="Press I or P" :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
                             <img src="/images/picture.png" height="36">
                         </button>
                     </li>
 
                     <!-- Name Button -->
                     <li class="nav-item">
-                        <button title="Press N" :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
+                        <button id="nameButton" title="Press N" :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
                             <img src="/images/text.png" height="36">
                         </button>
                     </li>
 
                     <!-- Translation Button -->
                     <li class="nav-item">
-                        <button title="Press T" :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
+                        <button id="translationButton" title="Press T" :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
                             <img src="/images/translation.png" height="36">
                         </button>
                     </li>
-
 
                     <!-- Quit Game -->
                     <li class="nav-item">
@@ -145,18 +144,22 @@ export default {
 
     methods: {
         playAudio() {
+            $("#audioButton").trigger("blur");
             store.playCardAudio();
         },
 
         toggleImage() {
+            $("#imageButton").trigger("blur");
             this.game.image = !this.game.image;
         },
 
         toggleName() {
+            $("#nameButton").trigger("blur");
             this.game.name = !this.game.name;
         },
 
         toggleTranslation() {
+            $("#translationButton").trigger("blur");
             this.game.translation = !this.game.translation;
         },
 
