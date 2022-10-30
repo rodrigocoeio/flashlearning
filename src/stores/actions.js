@@ -34,6 +34,18 @@ export default {
     }
   },
 
+  toggleCardImage() {
+    this.game.image = !this.game.image;
+  },
+
+  toggleCardName() {
+    this.game.name = !this.game.name;
+  },
+
+  toggleCardTranslation() {
+    this.game.translation = !this.game.translation;
+  },
+
   selectCategory(category) {
     this.game.category = category;
   },

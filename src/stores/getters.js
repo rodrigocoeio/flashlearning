@@ -13,7 +13,7 @@ export default {
 
       const allCardsCategory = {
         name: "All Cards",
-        cards: sortByKey(allCards, "name"),
+        cards: shuffleArray(allCards),
       };
 
       return allCardsCategory;

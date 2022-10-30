@@ -20,6 +20,30 @@ const listenKeyBoardEvents = function (e) {
       return store.previousCard();
     }
 
+    // Play sound
+    if(e.keyCode == 65 || e.keyCode == 83)
+    {
+      return store.playCardAudio();
+    }
+
+    // Toggle Image
+    if(e.keyCode == 73 || e.keyCode == 80)
+    {
+      return store.toggleCardImage();
+    }
+
+    // Toggle Name
+    if(e.keyCode == 78)
+    {
+      return store.toggleCardName();
+    }
+
+    // Toggle Translation
+    if(e.keyCode == 84)
+    {
+      return store.toggleCardTranslation();
+    }
+
     // Play card audio on space
     if (e.keyCode == 32) {
       store.playCardAudio();

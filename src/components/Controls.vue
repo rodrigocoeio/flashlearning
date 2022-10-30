@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Category Name -->
-                    <li class="nav-item CategoryName">
+                    <li class="nav-item CategoryName" :title="categoryName">
                         {{ categoryName }}
                     </li>
 
@@ -58,28 +58,28 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Audio Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
+                        <button title="Press A S or Space" :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
                             <img src="/images/audio.png" height="36">
                         </button>
                     </li>
 
                     <!-- Picture Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
+                        <button title="Press I or P" :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
                             <img src="/images/picture.png" height="36">
                         </button>
                     </li>
 
                     <!-- Name Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
+                        <button title="Press N" :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
                             <img src="/images/text.png" height="36">
                         </button>
                     </li>
 
                     <!-- Translation Button -->
                     <li class="nav-item">
-                        <button :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
+                        <button title="Press T" :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
                             <img src="/images/translation.png" height="36">
                         </button>
                     </li>
@@ -185,6 +185,9 @@ button {
     font-size: 24px;
     font-weight: bolder;
     padding-right: 15px;
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
 }
 
 .CardIndex {
