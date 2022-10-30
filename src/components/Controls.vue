@@ -161,10 +161,12 @@ export default {
         },
 
         previousCard() {
+            $("#previousCardButton").trigger("blur");
             store.previousCard();
         },
 
         nextCard() {
+            $("#nextCardButton").trigger("blur");
             store.nextCard();
         },
 
