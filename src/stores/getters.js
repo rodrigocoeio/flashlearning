@@ -1,37 +1,10 @@
 export default {
   currentCategory() {
-    const categoryName = this.game.category;
-    const subcategoryName = this.game.subcategory;
-
-    // All Cards
-    if (categoryName === "all") {
-      const allCards = [];
-
-      for (const k in this.categories) {
-        const category = this.categories[k];
-        category.cards.forEach((card) => allCards.push(card));
-      }
-
-      const allCardsCategory = {
-        name: "All Cards",
-        cards: shuffleArray(allCards),
-      };
-
-      return allCardsCategory;
-    }
-
-    let category = this.categories[categoryName]
-      ? this.categories[categoryName]
-      : false;
-
-    if(subcategoryName)
-      return category.categories[subcategoryName];
-
-    return category;
+    return this.game.category;
   },
 
   categoryName() {
-    return this.currentCategory ? this.currentCategory.name : "";
+    return this.currentCategory ? this.currentCategory.fullName : "";
   },
 
   card() {

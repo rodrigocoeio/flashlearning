@@ -12,6 +12,7 @@ export default {
     if (this.game.audio) this.stopAudio();
 
     this.game.started = false;
+    this.game.category = false;
   },
 
   playCardAudio() {

@@ -15,15 +15,24 @@ const readFolder = async function (folder, categoryName) {
     if (fs.lstatSync(fullFilePath).isDirectory()) {
       if (!silenceMode) console.log("reading category: " + fileName);
 
-      const categoryNameRead = categoryName ? categoryName + "/" + fileName : fileName;
-      const categoryRead = await readFolder(fullFilePath, categoryNameRead);
-      const category = {
-        name: capitalizeFirstLetter(fileName),
-        cards: categoryRead.cards,
-        categories: categoryRead.categories,
-      };
+      const fullCategoryName = categoryName
+        ? categoryName + "/" + fileName
+        : fileName;
+      const categoryRead = await readFolder(fullFilePath, fullCategoryName);
 
-      categories[fileName] = category;
+      if (
+        categoryRead.cards.length > 0 ||
+        Object.keys(categoryRead.categories).length > 0
+      ) {
+        const category = {
+          name: fileName,
+          fullName: fullCategoryName,
+          cards: categoryRead.cards,
+          categories: categoryRead.categories,
+        };
+
+        categories[fileName] = category;
+      }
     } else {
       const fileExtension = getExtensionFromFileName(fileName);
 
@@ -40,11 +49,15 @@ const readFolder = async function (folder, categoryName) {
         const cardFileTextLines = cardFileText.split("\n");
 
         cards.push({
-          name: cardFileTextLines.length>1 ? cardFileTextLines[0] : formatCardName(cardName),
+          name:
+            cardFileTextLines.length > 1
+              ? cardFileTextLines[0]
+              : formatCardName(cardName),
           category: categoryName,
           image: fs.existsSync(folder + "/" + cardImage) ? cardImage : false,
           audio: fs.existsSync(folder + "/" + cardAudio) ? cardAudio : false,
-          translation: cardFileTextLines.length>1 ? cardFileTextLines[1] : cardFileText,
+          translation:
+            cardFileTextLines.length > 1 ? cardFileTextLines[1] : cardFileText,
         });
       }
     }
@@ -66,13 +79,15 @@ const getExtensionFromFileName = function (fileName) {
   return fileNameSplited[1] ? fileNameSplited[1] : "";
 };
 
-const formatCardName = function(cardName) {
+const formatCardName = function (cardName) {
   const fileNameSplited = cardName.split("-");
 
-  cardName = fileNameSplited[1] ? fileNameSplited[1].trim() : fileNameSplited[0];
+  cardName = fileNameSplited[1]
+    ? fileNameSplited[1].trim()
+    : fileNameSplited[0];
 
   return capitalizeFirstLetter(cardName);
-}
+};
 
 const capitalizeFirstLetter = function (string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

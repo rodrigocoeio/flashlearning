@@ -4,16 +4,7 @@
 
     <br><br>
 
-    <select id="categoryField" class="form form-select" v-model="category" @change="subcategory=0">
-      <option value="0">Choose a Category</option>
-      <option value="all">All Cards</option>
-      <option v-for="category, index in categories" :value="index">{{ category.name }}</option>
-    </select>
-
-    <select id="subCategoryField" v-if="hasSubCategories" class="form form-select" v-model="subcategory">
-      <option value="0">Choose a Sub-Category</option>
-      <option v-for="category, index in currentCategory.categories" :value="index">{{ category.name }}</option>
-    </select>
+    <category-select :categories="categories"></category-select>
 
     <button class="btn btn-primary" @click="startGame">Start Game</button>
 
@@ -22,6 +13,7 @@
   
 <script>
 import store from "$/store.js";
+import CategorySelect from "./CategorySelect.vue";
 
 export default {
   data() {
@@ -59,6 +51,10 @@ export default {
     startGame() {
       return store.startGame();
     }
+  },
+
+  components: {
+    CategorySelect
   }
 }
 </script>
@@ -66,11 +62,5 @@ export default {
 <style scoped>
 main {
   padding: 15px;
-}
-
-select {
-  max-width: 200px;
-  margin: auto;
-  margin-bottom: 15px;
 }
 </style>
