@@ -18,7 +18,7 @@ export default {
 
     data() {
         return {
-            categoryName: "all"
+            categoryName: "0"
         }
     },
 
@@ -45,7 +45,8 @@ export default {
     },
 
     mounted() {
-        this.selectCategory();
+        if (!store.game.category)
+            this.selectCategory();
     },
 
     methods: {
@@ -68,7 +69,6 @@ export default {
                     const categoryCards = this.getCategoriesAllCards(category.categories);
                     categoryCards.forEach((card) => allCards.push(card));
                 }
-
             }
 
             return allCards;
