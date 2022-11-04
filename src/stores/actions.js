@@ -2,6 +2,7 @@ export default {
   startGame() {
     this.game.started = true;
     this.game.cardIndex = 0;
+    this.game.cover = this.currentCategory.cover;
     this.game.audio = false;
     this.game.image = false;
     this.game.name = false;
@@ -15,13 +16,15 @@ export default {
     this.game.category = false;
   },
 
-  playCardAudio() {
+  playCardAudio(card) {
     this.stopAudio();
     
     const store = this;
-    const audioFile = "/cards/" + this.card.category + "/" + this.card.audio;
+    card = card ? card : this.card;
 
-    if (this.card.audio) {
+    const audioFile = "/cards/" + card.category + "/" + card.audio;
+
+    if (card.audio) {
       this.game.audio = playAudio(audioFile);
       this.game.audio.onended = function () {
         //store.game.audio = false;

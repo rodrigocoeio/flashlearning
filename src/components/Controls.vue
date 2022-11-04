@@ -15,8 +15,10 @@
                 </a>
             </button>
 
+            <button class="btn btn-primary StartGame" @click="startGame" v-if="cover">Start Game</button>
+
             <!-- Navbar -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="!cover">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Category Name -->
                     <li class="nav-item CategoryName" :title="categoryName">
@@ -115,6 +117,10 @@ export default {
             return store.categoryName;
         },
 
+        cover() {
+            return store.game.cover;
+        },
+
         card() {
             return store.card;
         },
@@ -136,10 +142,6 @@ export default {
         card(card) {
             this.playAudio();
         }
-    },
-
-    mounted() {
-        this.playAudio();
     },
 
     methods: {
@@ -173,6 +175,10 @@ export default {
             store.nextCard();
         },
 
+        startGame() {
+            store.game.cover = false;
+        },
+
         quitGame() {
             store.quitGame();
         }
@@ -184,6 +190,11 @@ export default {
 button {
     margin-left: 15px;
     font-size: 20px;
+}
+
+.StartGame {
+    margin: auto;
+    margin-left: calc(50% - 100px);
 }
 
 .CategoryName {

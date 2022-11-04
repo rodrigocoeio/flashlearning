@@ -6,6 +6,7 @@ const readFolder = async function (folder, categoryName) {
   const directoryPath = path.join(__dirname, folder);
   const categories = {};
   const cards = [];
+  let cover = false;
 
   const files = fs.readdirSync(directoryPath);
 
@@ -27,6 +28,7 @@ const readFolder = async function (folder, categoryName) {
         const category = {
           name: fileName,
           fullName: fullCategoryName,
+          cover: categoryRead.cover,
           cards: categoryRead.cards,
           categories: categoryRead.categories,
         };
@@ -48,7 +50,7 @@ const readFolder = async function (folder, categoryName) {
         });
         const cardFileTextLines = cardFileText.split("\n");
 
-        cards.push({
+        const card = {
           name:
             cardFileTextLines.length > 1
               ? cardFileTextLines[0]
@@ -58,12 +60,19 @@ const readFolder = async function (folder, categoryName) {
           audio: fs.existsSync(folder + "/" + cardAudio) ? cardAudio : false,
           translation:
             cardFileTextLines.length > 1 ? cardFileTextLines[1] : cardFileText,
-        });
+        };
+
+        if (cardName == categoryName) {
+          cover = card;
+        } else {
+          cards.push(card);
+        }
       }
     }
   });
 
   return {
+    cover,
     categories,
     cards,
   };

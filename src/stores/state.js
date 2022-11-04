@@ -5,6 +5,7 @@ export default {
         started: false,
         category: false,
         cardIndex: 0,
+        cover: false,
         audio: false,
         image: false,
         name: false,

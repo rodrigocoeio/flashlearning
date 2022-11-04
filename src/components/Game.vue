@@ -3,95 +3,30 @@
 
     <br>
 
-    <div class="CardBox">
-        <div :class="['Card', index == 0 ? 'active' : '']" v-for="card,index in cards" v-show="cardIndex === index">
-
-            <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.name && !game.translation" @click="playAudio">
-
-            <div>
-                <h1 v-show="game.name">{{ card.name }}</h1>
-                <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
-            </div>
-
-            <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
-        </div>
-    </div>
+    <cover v-if="cover"></cover>
+    <card v-if="!cover"></card>
 </template>
 
 <script>
 import store from "$/store.js";
 
 import Controls from "./Controls.vue";
+import Card from "./Card.vue";
+import Cover from "./Cover.vue";
 
 export default {
     computed: {
-        game() {
-            return store.game;
-        },
-
-        currentCategory() {
-            return store.currentCategory;
-        },
-
-        card() {
-            return store.card;
-        },
-
-        image() {
-            return "/cards/" + this.card.category + "/" + this.card.image;
-        },
-
-        cards() {
-            return store.currentCategory ? store.currentCategory.cards : [];
-        },
-
-        cardIndex() {
-            return store.game.cardIndex;
-        }
-    },
-
-    methods: {
-        playAudio() {
-            store.playCardAudio();
-        },
-
-        quitGame() {
-            return store.quitGame();
+        cover() {
+            return store.game.cover;
         }
     },
 
     components: {
-        Controls
+        Controls,
+        Card,
+        Cover
     }
 }
 </script>
 
-<style scoped>
-.Translation {
-    color: red;
-}
 
-.CardBox {
-    width: calc(100% - 200px);
-    max-height: calc(100% - 100px);
-    height: 100%;
-    padding: 30x;
-    margin: auto;
-    overflow: hidden;
-}
-
-.Card img {
-    max-height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-.Card {
-    border: 4px dashed red;
-    padding: 30px;
-    height: 100%;
-}
-.GuessWhat {
-    cursor: pointer;
-}
-</style>
