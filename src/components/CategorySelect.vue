@@ -50,7 +50,9 @@ export default {
 
     methods: {
         selectCategory() {
-            store.game.category = this.currentCategory;
+            const category = this.currentCategory;
+            category.cards = shuffleArray(category.cards);
+            store.game.category = category;
         },
 
         getCategoriesAllCards(categories) {
