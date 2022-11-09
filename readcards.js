@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const silenceMode = true;
 
-const readFolder = async function (folder, categoryName) {
+const readFolder = async function (folder, category) {
   const directoryPath = path.join(__dirname, folder);
   const categories = {};
   const cards = [];
@@ -16,10 +16,10 @@ const readFolder = async function (folder, categoryName) {
     if (fs.lstatSync(fullFilePath).isDirectory()) {
       if (!silenceMode) console.log("reading category: " + fileName);
 
-      const fullCategoryName = categoryName
-        ? categoryName + "/" + fileName
+      const fullCategoryName = category
+        ? category.fullName + "/" + fileName
         : fileName;
-      const categoryRead = await readFolder(fullFilePath, fullCategoryName);
+      const categoryRead = await readFolder(fullFilePath, {name:fileName, fullName: fullCategoryName});
 
       if (
         categoryRead.cards.length > 0 ||
@@ -55,14 +55,14 @@ const readFolder = async function (folder, categoryName) {
             cardFileTextLines.length > 1
               ? cardFileTextLines[0]
               : formatCardName(cardName),
-          category: categoryName,
+          category: category.fullName,
           image: fs.existsSync(folder + "/" + cardImage) ? cardImage : false,
           audio: fs.existsSync(folder + "/" + cardAudio) ? cardAudio : false,
           translation:
             cardFileTextLines.length > 1 ? cardFileTextLines[1] : cardFileText,
         };
 
-        if (cardName == categoryName) {
+        if (card.name == category.name) {
           cover = card;
         } else {
           cards.push(card);
