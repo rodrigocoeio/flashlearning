@@ -1,5 +1,11 @@
 export default {
   startGame() {
+    if(!this.currentCategory || (this.currentCategory.cards && this.currentCategory.cards.length===0))
+    {
+      alert('Choose a Category or Subcategory');
+      return false;
+    }
+
     this.game.started = true;
     this.game.cardIndex = 0;
     this.game.cover = this.currentCategory.cover;

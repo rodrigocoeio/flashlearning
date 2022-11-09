@@ -52,7 +52,7 @@ export default {
     methods: {
         selectCategory() {
             const category = this.currentCategory;
-            if (category && category.cards)
+            if (category && category.cards && store.game.cardSorting=="shuffle")
                 category.cards = shuffleArray(category.cards);
             store.game.category = category;
         },

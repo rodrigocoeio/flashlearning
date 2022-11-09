@@ -4,6 +4,11 @@
 
     <br><br>
 
+    <select class="form form-select" v-model="cardSorting">
+      <option value="shuffle">Shuffle Cards</option>
+      <option value="alpha">Alphabetical Sorting</option>
+    </select>
+
     <category-select :categories="categories"></category-select>
 
     <button class="btn btn-primary" @click="startGame">Start Game</button>
@@ -19,7 +24,8 @@ export default {
   data() {
     return {
       category: store.game.category,
-      subcategory: store.game.subcategory
+      subcategory: store.game.subcategory,
+      cardSorting: store.game.cardSorting
     }
   },
 
@@ -44,6 +50,10 @@ export default {
 
     subcategory(subcategory) {
       store.selectSubCategory(subcategory);
+    },
+
+    cardSorting(value) {
+      store.game.cardSorting = value;
     }
   },
 
@@ -62,5 +72,11 @@ export default {
 <style scoped>
 main {
   padding: 15px;
+}
+
+select {
+    max-width: 200px;
+    margin: auto;
+    margin-bottom: 15px;
 }
 </style>
