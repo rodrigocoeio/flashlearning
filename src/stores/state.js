@@ -5,7 +5,7 @@ export default {
         started: false,
         category: false,
         cardIndex: 0,
-        cardSorting: "shuffle",
+        cardSorting: "alpha",
         cover: false,
         audio: false,
         image: false,

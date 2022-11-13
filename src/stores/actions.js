@@ -28,7 +28,7 @@ export default {
     const store = this;
     card = card ? card : this.card;
 
-    const audioFile = "/cards/" + card.category + "/" + card.audio;
+    const audioFile = "/cards/" + card.parent + "/" + card.audio;
 
     if (card.audio) {
       this.game.audio = playAudio(audioFile);

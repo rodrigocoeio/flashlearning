@@ -1,8 +1,8 @@
 <template>
     <div class="CardBox">
-        <div :class="['Card', index == 0 ? 'active' : '']" v-for="card,index in cards" v-show="cardIndex === index">
+        <div class="Card">
 
-            <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.name && !game.translation"
+            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-if="!game.image && !game.name && !game.translation"
                 @click="playAudio">
 
             <div>
@@ -33,7 +33,7 @@ export default {
         },
 
         image() {
-            return "/cards/" + this.card.category + "/" + this.card.image;
+            return "/cards/" + this.card.parent + "/" + this.card.image;
         },
 
         cards() {

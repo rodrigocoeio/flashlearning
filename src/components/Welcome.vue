@@ -5,8 +5,8 @@
     <br><br>
 
     <select class="form form-select" v-model="cardSorting">
-      <option value="shuffle">Shuffle Cards</option>
       <option value="alpha">Alphabetical Sorting</option>
+      <option value="shuffle">Shuffle Cards</option>
     </select>
 
     <category-select :categories="categories"></category-select>

@@ -1,7 +1,6 @@
 <template>
-    <select id="categoryField" class="form form-select" v-model="categoryName" @change="selectCategory">
-        <option value="0">Choose a Category</option>
-        <option value="all">All Cards</option>
+    <select id="categoryField" ref="select" class="form form-select" v-model="categoryName" @change="selectCategory">
+        <option value="0">{{ placeholder }}</option>
         <option v-for="category, index in categories" :value="index">{{ category.name }}</option>
     </select>
 
@@ -23,23 +22,15 @@ export default {
     },
 
     computed: {
+        placeholder() {
+            return !this.category ? "Choose a Category" : "Choose a Sub-Category";
+        },
+
         hasSubCategories() {
             return this.currentCategory && this.currentCategory.categories ? Object.keys(this.currentCategory.categories).length > 0 : false;
         },
 
         currentCategory() {
-            if (this.categoryName === "all") {
-                const allCards = this.getCategoriesAllCards(this.categories);
-
-                const allCardsCategory = {
-                    name: "All Cards",
-                    fullName: this.category ? this.category.fullName + " - All Cards" : "All Cards",
-                    cards: sortByKey(allCards, "name"),
-                };
-
-                return allCardsCategory;
-            }
-
             return this.categories[this.categoryName];
         }
     },
@@ -47,32 +38,27 @@ export default {
     mounted() {
         if (!store.game.category)
             this.selectCategory();
+
+        $(this.$refs.select).trigger("focus");
     },
 
     methods: {
         selectCategory() {
             const category = this.currentCategory;
-            if (category && category.cards && store.game.cardSorting=="shuffle")
-                category.cards = shuffleArray(category.cards);
-            store.game.category = category;
-        },
+            
+            if (category && category.cards) {
+                switch (store.game.cardSorting) {
+                    case "alpha":
+                        category.cards = sortByKey(category.cards, "name", "asc");
+                        break;
 
-        getCategoriesAllCards(categories) {
-            const allCards = [];
-
-            for (const name in categories) {
-                const category = categories[name];
-
-                if (category.cards)
-                    category.cards.forEach((card) => allCards.push(card));
-
-                if (category.categories) {
-                    const categoryCards = this.getCategoriesAllCards(category.categories);
-                    categoryCards.forEach((card) => allCards.push(card));
+                    case "shuffle":
+                        category.cards = shuffleArray(category.cards);
+                        break;
                 }
             }
 
-            return allCards;
+            store.game.category = category;
         }
     }
 }

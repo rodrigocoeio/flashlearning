@@ -1,10 +1,12 @@
 <template>
     <div class="CardBox">
-        <div class="Card"  @click="playAudio" :style="'background-image: url(' + image+ ')'">
+        <div class="Card" @click="playAudio">
             <div>
                 <h1>{{ card.name }}</h1>
                 <h2 class="Translation">{{ card.translation }}</h2>
             </div>
+
+            <img :src="image" v-if="card.image" @click="playAudio" class="CardImage">
         </div>
     </div>
 </template>
@@ -24,7 +26,7 @@ export default {
         },
 
         image() {
-            return "/cards/" + this.card.category + "/" + this.card.image;
+            return "/cards/" + this.card.parent + "/" + this.card.image;
         },
     },
 
@@ -70,7 +72,8 @@ export default {
     background-size: cover;
 }
 
-h1, h2 {
+h1,
+h2 {
     background-color: white;
 }
 
