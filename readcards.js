@@ -20,7 +20,7 @@ const capitalizeFirstLetter = function (string) {
 const formatCardName = function (cardName) {
   const fileNameSplited = cardName.split("-");
 
-  cardName = fileNameSplited[1] ? fileNameSplited[1] : fileNameSplited[0];
+  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
 
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
