@@ -1,10 +1,13 @@
 export default {
   startGame() {
-    if(!this.currentCategory || (this.currentCategory.cards && this.currentCategory.cards.length===0))
+    if(!this.currentCategory || (!this.currentCategory.cards || this.currentCategory.cards.length===0))
     {
       alert('Choose a Category or Subcategory');
+      $("#categoryField").trigger("focus");
       return false;
     }
+
+    console.log("Game Started");
 
     this.game.started = true;
     this.game.cardIndex = 0;
@@ -33,7 +36,7 @@ export default {
     if (card.audio) {
       this.game.audio = playAudio(audioFile);
       this.game.audio.onended = function () {
-        //store.game.audio = false;
+        store.game.audio = false;
       };
     }
   },
@@ -41,6 +44,7 @@ export default {
   stopAudio() {
     if (this.game.audio){
       this.game.audio.pause();
+      this.game.audio = false;
     }
   },
 
