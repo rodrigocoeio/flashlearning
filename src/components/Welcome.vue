@@ -6,6 +6,7 @@
 
     <select class="form form-select" v-model="cardSorting">
       <option value="alpha">Alphabetical Sorting</option>
+      <option value="number">Numerical Sorting</option>
       <option value="shuffle">Shuffle Cards</option>
     </select>
 

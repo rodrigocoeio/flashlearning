@@ -1,8 +1,11 @@
 export default {
   startGame() {
-    if(!this.currentCategory || (!this.currentCategory.cards || this.currentCategory.cards.length===0))
-    {
-      alert('Choose a Category or Subcategory');
+    if (
+      !this.currentCategory ||
+      !this.currentCategory.cards ||
+      this.currentCategory.cards.length === 0
+    ) {
+      alert("Choose a Category or Subcategory");
       $("#categoryField").trigger("focus");
       return false;
     }
@@ -27,7 +30,7 @@ export default {
 
   playCardAudio(card) {
     this.stopAudio();
-    
+
     const store = this;
     card = card ? card : this.card;
 
@@ -42,7 +45,7 @@ export default {
   },
 
   stopAudio() {
-    if (this.game.audio){
+    if (this.game.audio) {
       this.game.audio.pause();
       this.game.audio = false;
     }
@@ -61,11 +64,23 @@ export default {
   },
 
   selectCategory(category) {
-    this.game.category = category;
-  },
+    if (category && category.cards) {
+      switch (this.game.cardSorting) {
+        case "alpha":
+          category.cards = sortByKey(category.cards, "name", "asc");
+          break;
 
-  selectSubCategory(subcategory) {
-    this.game.subcategory = subcategory;
+        case "number":
+          category.cards = sortByKey(category.cards, "number", "asc");
+          break;
+
+        case "shuffle":
+          category.cards = shuffleArray(category.cards);
+          break;
+      }
+
+      this.game.category = category;
+    }    
   },
 
   previousCard() {

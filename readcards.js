@@ -18,15 +18,21 @@ const capitalizeFirstLetter = function (string) {
 };
 
 const formatCardName = function (cardName) {
-  /* const fileNameSplited = cardName.split("-");
-
-  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0]; */
+  const fileNameSplited = cardName.split("-");
+  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
 
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
 
   return capitalizeFirstLetter(cardName);
 };
+
+const formatCardNumber = function (cardName) {
+  const fileNameSplited = cardName.split("-");
+  const cardNumber = fileNameSplited.length > 1 ? parseFloat(fileNameSplited.shift()) : false;
+
+  return cardNumber > 0 ? cardNumber : false;
+}
 
 const readFolder = async function (folder, parent) {
   const contents = [];
@@ -139,6 +145,7 @@ const getCategory = (content, parent) => {
 const getCard = (content, parent) => {
   if (content.extension == "txt") {
     const cardName = formatCardName(content.name);
+    const cardNumber = formatCardNumber(content.name);
     const cardType = formatCardName(parent.name).toLowerCase() == cardName.toLowerCase() ? "cover" : "card";
     const cardImage =
       findCardFile(content.name, parent, "jpg") ||
@@ -156,6 +163,7 @@ const getCard = (content, parent) => {
         cardFileTextLines.length > 1
           ? formatCardName(cardFileTextLines[0])
           : cardName,
+      number: cardNumber,
       category: parent.name,
       parent: content.parent,
       image: cardImage,

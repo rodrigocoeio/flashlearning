@@ -9,6 +9,7 @@
 
 <script>
 import store from "$/store.js";
+window.store = store;
 
 import Controls from "./Controls.vue";
 import Card from "./Card.vue";
