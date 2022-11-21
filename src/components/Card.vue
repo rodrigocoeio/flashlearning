@@ -10,7 +10,7 @@
             </div>
 
             <!-- Cover -->
-            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-if="(!game.image && !game.name && !game.translation) || !card.image"
+            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-show="!game.image"
                 @click="playAudio">
 
             <!-- Card Image -->

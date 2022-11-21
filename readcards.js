@@ -160,14 +160,12 @@ const getCard = (content, parent) => {
     });
     const cardFileTextLines = cardFileText.split("\n");
 
-    const cardName =
-      cardFileTextLines.length > 1
-        ? formatCardName(cardFileTextLines.shift())
-        : formatCardName(content.name);
-    const cardTranslation =
-      cardFileTextLines.length > 1
-        ? formatCardTranslation(cardFileTextLines.join("\n"))
-        : formatCardTranslation(cardFileText);
+    let cardName = formatCardName(content.name);
+    let cardTranslation = formatCardTranslation(cardFileText);
+    if (cardFileTextLines.length > 1) {
+      cardName = formatCardName(cardFileTextLines.shift());
+      cardTranslation = formatCardTranslation(cardFileTextLines.join("\n"));
+    }
 
     const cardNumber = formatCardNumber(content.name);
     const cardType =
