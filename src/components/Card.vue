@@ -2,14 +2,16 @@
     <div class="CardBox">
         <div class="Card">
 
-            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-if="!game.image && !game.name && !game.translation"
-                @click="playAudio">
-
             <div>
                 <h1 v-show="game.name">{{ card.name }}</h1>
                 <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
             </div>
 
+            <!-- Cover -->
+            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-if="(!game.image && !game.name && !game.translation) || !card.image"
+                @click="playAudio">
+
+            <!-- Card Image -->
             <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
         </div>
     </div>
