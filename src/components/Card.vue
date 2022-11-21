@@ -4,7 +4,9 @@
 
             <div>
                 <h1 v-show="game.name">{{ card.name }}</h1>
-                <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
+                <h2 class="Translation" v-show="game.translation">
+                    <pre>{{ card.translation }}</pre>
+                </h2>
             </div>
 
             <!-- Cover -->

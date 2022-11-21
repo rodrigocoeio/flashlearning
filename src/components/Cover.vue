@@ -3,7 +3,9 @@
         <div class="Card" @click="playAudio">
             <div>
                 <h1>{{ card.name }}</h1>
-                <h2 class="Translation">{{ card.translation }}</h2>
+                <h2 class="Translation">
+                    <pre>{{ card.translation }}</pre>
+                </h2>
             </div>
 
             <img :src="image" v-if="card.image" @click="playAudio" class="CardImage">

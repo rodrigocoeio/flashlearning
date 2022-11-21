@@ -19,7 +19,8 @@ const capitalizeFirstLetter = function (string) {
 
 const formatCardName = function (cardName) {
   const fileNameSplited = cardName.split("-");
-  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
+  cardName =
+    fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
 
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
@@ -29,10 +30,19 @@ const formatCardName = function (cardName) {
 
 const formatCardNumber = function (cardName) {
   const fileNameSplited = cardName.split("-");
-  const cardNumber = fileNameSplited.length > 1 ? parseFloat(fileNameSplited.shift()) : false;
+  const cardNumber =
+    fileNameSplited.length > 1 ? parseFloat(fileNameSplited.shift()) : false;
 
   return cardNumber > 0 ? cardNumber : false;
-}
+};
+
+const formatCardTranslation = function (translation) {
+  return translation;
+};
+
+String.prototype.nl2br = function () {
+  return this.replace(/\n/g, "<br />");
+};
 
 const readFolder = async function (folder, parent) {
   const contents = [];
@@ -144,32 +154,41 @@ const getCategory = (content, parent) => {
 
 const getCard = (content, parent) => {
   if (content.extension == "txt") {
-    const cardName = formatCardName(content.name);
-    const cardNumber = formatCardNumber(content.name);
-    const cardType = formatCardName(parent.name).toLowerCase() == cardName.toLowerCase() ? "cover" : "card";
-    const cardImage =
-      findCardFile(content.name, parent, "jpg") ||
-      findCardFile(content.name, parent, "png");
-    const cardAudio = findCardFile(content.name, parent, "mp3");
     const cardFileText = fs.readFileSync(content.fullPath, {
       encoding: "utf8",
       flag: "r",
     });
     const cardFileTextLines = cardFileText.split("\n");
 
+    const cardName =
+      cardFileTextLines.length > 1
+        ? formatCardName(cardFileTextLines.shift())
+        : formatCardName(content.name);
+    const cardTranslation =
+      cardFileTextLines.length > 1
+        ? formatCardTranslation(cardFileTextLines.join("\n"))
+        : formatCardTranslation(cardFileText);
+
+    const cardNumber = formatCardNumber(content.name);
+    const cardType =
+      formatCardName(parent.name).toLowerCase() ==
+      formatCardName(content.name).toLowerCase()
+        ? "cover"
+        : "card";
+    const cardImage =
+      findCardFile(content.name, parent, "jpg") ||
+      findCardFile(content.name, parent, "png");
+    const cardAudio = findCardFile(content.name, parent, "mp3");
+
     return {
       type: cardType,
-      name:
-        cardFileTextLines.length > 1
-          ? formatCardName(cardFileTextLines[0])
-          : cardName,
+      name: cardName,
       number: cardNumber,
       category: parent.name,
       parent: content.parent,
       image: cardImage,
       audio: cardAudio,
-      translation:
-        cardFileTextLines.length > 1 ? cardFileTextLines[1] : cardFileText,
+      translation: cardTranslation,
     };
   }
 
