@@ -7,6 +7,9 @@
                 <h2 class="Translation" v-show="game.translation">
                     <pre>{{ card.translation }}</pre>
                 </h2>
+                <h2 class="Comment" v-show="card.comment && game.translation">
+                    <pre>{{ card.comment }}</pre>
+                </h2>
             </div>
 
             <!-- Cover -->
@@ -67,7 +70,12 @@ export default {
 
 <style scoped>
 .Translation {
+    color: blue;
+}
+
+.Comment {
     color: red;
+    font-size: 25px;
 }
 
 .CardBox {
@@ -89,6 +97,10 @@ export default {
     border: 4px dashed red;
     padding: 30px;
     height: 100%;
+}
+
+.Card pre {
+    margin-bottom: 0px;
 }
 
 .GuessWhat {

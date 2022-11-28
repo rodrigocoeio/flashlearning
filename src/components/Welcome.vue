@@ -24,8 +24,6 @@ import CategorySelect from "./CategorySelect.vue";
 export default {
   data() {
     return {
-      category: store.game.category,
-      subcategory: store.game.subcategory,
       cardSorting: store.game.cardSorting
     }
   },
@@ -33,28 +31,13 @@ export default {
   computed: {
     categories() {
       return store.categories;
-    },
-
-    currentCategory() {
-      return store.categories[this.category];
-    },
-
-    hasSubCategories() {
-      return this.currentCategory && this.currentCategory.categories ? Object.keys(this.currentCategory.categories).length > 0 : false;
     }
   },
 
   watch: {
-    category(category) {
-      store.selectCategory(category);
-    },
-
-    subcategory(subcategory) {
-      store.selectSubCategory(subcategory);
-    },
-
     cardSorting(value) {
       store.game.cardSorting = value;
+      store.selectCategory(store.currentCategory);
     }
   },
 
@@ -76,8 +59,8 @@ main {
 }
 
 select {
-    max-width: 200px;
-    margin: auto;
-    margin-bottom: 15px;
+  max-width: 200px;
+  margin: auto;
+  margin-bottom: 15px;
 }
 </style>

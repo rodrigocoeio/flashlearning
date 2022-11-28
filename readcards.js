@@ -17,27 +17,30 @@ const capitalizeFirstLetter = function (string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-const formatCardName = function (cardName) {
+const getCardName = function (cardName) {
   const fileNameSplited = cardName.split("-");
-  cardName =
-    fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
+  return fileNameSplited.length > 1
+    ? fileNameSplited.pop()
+    : fileNameSplited[0];
+};
 
+const formatCardName = function (cardName) {
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
 
   return capitalizeFirstLetter(cardName);
 };
 
-const formatCardNumber = function (cardName) {
+const formatCardTranslation = function (cardTranslation) {
+  return cardTranslation ? formatCardName(cardTranslation) : cardTranslation;
+};
+
+const getCardNumber = function (cardName) {
   const fileNameSplited = cardName.split("-");
   const cardNumber =
     fileNameSplited.length > 1 ? parseFloat(fileNameSplited.shift()) : false;
 
   return cardNumber > 0 ? cardNumber : false;
-};
-
-const formatCardTranslation = function (translation) {
-  return translation;
 };
 
 String.prototype.nl2br = function () {
@@ -160,14 +163,17 @@ const getCard = (content, parent) => {
     });
     const cardFileTextLines = cardFileText.split("\n");
 
-    let cardName = formatCardName(content.name);
-    let cardTranslation = formatCardTranslation(cardFileText);
+    let cardName = getCardName(content.name);
+    let cardTranslation = cardFileText;
+    let cardComment = false;
     if (cardFileTextLines.length > 1) {
-      cardName = formatCardName(cardFileTextLines.shift());
-      cardTranslation = formatCardTranslation(cardFileTextLines.join("\n"));
+      cardName = cardFileTextLines.shift();
+      cardTranslation = cardFileTextLines.shift();
+      cardComment =
+        cardFileTextLines.length > 0 ? cardFileTextLines.join("\n") : false;
     }
 
-    const cardNumber = formatCardNumber(content.name);
+    const cardNumber = getCardNumber(content.name);
     const cardType =
       formatCardName(parent.name).toLowerCase() ==
       formatCardName(content.name).toLowerCase()
@@ -180,13 +186,14 @@ const getCard = (content, parent) => {
 
     return {
       type: cardType,
-      name: cardName,
+      name: formatCardName(cardName),
       number: cardNumber,
       category: parent.name,
       parent: content.parent,
       image: cardImage,
       audio: cardAudio,
-      translation: cardTranslation,
+      translation: formatCardTranslation(cardTranslation),
+      comment: formatCardTranslation(cardComment),
     };
   }
 
