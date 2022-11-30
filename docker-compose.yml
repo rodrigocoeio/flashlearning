@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  flashinglearn:
+    image: node
+    ports: 
+      - '90:90'
+    volumes:
+      - './:/app'
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"

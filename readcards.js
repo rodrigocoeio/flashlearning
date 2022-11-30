@@ -193,7 +193,7 @@ const getCard = (content, parent) => {
       image: cardImage,
       audio: cardAudio,
       translation: formatCardTranslation(cardTranslation),
-      comment: formatCardTranslation(cardComment),
+      comment: cardComment,
     };
   }
 
