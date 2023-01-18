@@ -13,7 +13,7 @@
             </div>
 
             <!-- Cover -->
-            <img src="/images/flashlearning_logo.png" class="GuessWhat" v-show="!game.image"
+            <img :src="coverImage" class="GuessWhat" v-show="!game.image"
                 @click="playAudio">
 
             <!-- Card Image -->
@@ -41,6 +41,13 @@ export default {
 
         image() {
             return "/cards/" + this.card.parent + "/" + this.card.image;
+        },
+
+        coverImage() {
+            const category = store.game.category;
+            const cover = category.cover;
+
+            return cover ? "/cards/" + cover.parent + "/" + cover.image : "/images/flashlearning_logo.png";
         },
 
         cards() {
