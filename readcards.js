@@ -182,7 +182,7 @@ const getCard = (content, parent) => {
     const cardImage =
       findCardFile(content.name, parent, "jpg") ||
       findCardFile(content.name, parent, "png");
-    const cardAudio = findCardFile(content.name, parent, "mp3");
+    const cardAudio = findCardFile(content.name, parent, "mp3") || findCardFile(content.name, parent, "mpeg");
 
     return {
       type: cardType,
