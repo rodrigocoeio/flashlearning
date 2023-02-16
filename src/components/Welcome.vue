@@ -1,6 +1,6 @@
 <template>
   <main>
-    <img src="images/flashlearning_logo.png">
+    <img src="/images/flashlearning_logo.png">
 
     <br><br>
 
