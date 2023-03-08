@@ -47,7 +47,7 @@ export default {
             const category = store.game.category;
             const cover = category.cover;
 
-            return cover ? "/cards/" + cover.parent + "/" + cover.image : "/images/flashlearning_logo.png";
+            return cover ? "/cards/" + cover.parent + "/" + cover.image : "/images/flashlearning.png";
         },
 
         cards() {

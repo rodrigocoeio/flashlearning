@@ -5,8 +5,7 @@ export default {
       !this.currentCategory.cards ||
       this.currentCategory.cards.length === 0
     ) {
-      alert("Choose a Category or Subcategory");
-      $("#categoryField").trigger("focus");
+      store.game.pleaseSelectCategory = true;
       return false;
     }
 
@@ -19,23 +18,22 @@ export default {
     this.game.image = false;
     this.game.name = false;
     this.game.translation = false;
+    this.game.category.cards = this.shuffleCards(this.game.category.cards);
   },
 
   quitGame() {
     if (this.game.audio) this.stopAudio();
 
     this.game.started = false;
-    this.game.category = false;
   },
 
   async loadCategories() {
     try {
-      const categoriesJson = await fetch('/categories.json');
+      const categoriesJson = await fetch("/categories.json");
       this.categories = await categoriesJson.json();
-    }
-    catch(e) {
+    } catch (e) {
       //console.error('Failed loading categories.json!');
-    }    
+    }
   },
 
   playCardAudio(card) {
@@ -75,22 +73,29 @@ export default {
 
   selectCategory(category) {
     if (category && category.cards) {
-      switch (this.game.cardSorting) {
-        case "alpha":
-          category.cards = sortByKey(category.cards, "name", "asc");
-          break;
+      category.cards = this.shuffleCards(category.cards);
 
-        case "number":
-          category.cards = sortByKey(category.cards, "number", "asc");
-          break;
-
-        case "shuffle":
-          category.cards = shuffleArray(category.cards);
-          break;
-      }
-
+      store.game.pleaseSelectCategory = false;
       this.game.category = category;
-    }    
+    }
+  },
+
+  shuffleCards(cards) {
+    switch (this.game.cardSorting) {
+      case "alpha":
+        cards = sortByKey(cards, "name", "asc");
+        break;
+
+      case "number":
+        cards = sortByKey(cards, "number", "asc");
+        break;
+
+      case "shuffle":
+        cards = shuffleArray(cards);
+        break;
+    }
+
+    return cards;
   },
 
   previousCard() {

@@ -10,7 +10,8 @@ export default {
         audio: false,
         image: false,
         name: false,
-        translation: false
+        translation: false,
+        pleaseSelectCategory: false
     },
 
     categories: categories
