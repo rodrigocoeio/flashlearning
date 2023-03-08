@@ -13,8 +13,7 @@
             </div>
 
             <!-- Cover -->
-            <img :src="coverImage" class="GuessWhat" v-show="!game.image"
-                @click="playAudio">
+            <img :src="coverImage" class="GuessWhat" v-show="!game.image" @click="playAudio">
 
             <!-- Card Image -->
             <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
@@ -87,11 +86,16 @@ export default {
 
 .CardBox {
     width: calc(100% - 200px);
-    max-height: calc(100% - 100px);
-    height: 100%;
+    height: calc(100% - 100px);
     padding: 30x;
     margin: auto;
     overflow: hidden;
+    border: 4px dashed red;
+    border-radius: 30px;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    place-items: center;
 }
 
 .Card img {
@@ -101,9 +105,13 @@ export default {
 }
 
 .Card {
-    border: 4px dashed red;
     padding: 30px;
     height: 100%;
+}
+
+.Card h1 {
+    text-shadow: gray 3px 1px 1px;
+    -webkit-text-stroke: 1px black;
 }
 
 .Card pre {
@@ -115,10 +123,15 @@ export default {
 }
 
 pre {
-    white-space: pre-wrap;       /* Since CSS 2.1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: pre-wrap;
+    /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
 }
 </style>

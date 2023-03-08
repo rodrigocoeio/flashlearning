@@ -3,9 +3,9 @@
         <div class="Card" @click="playAudio">
             <div>
                 <h1>{{ card.name }}</h1>
-                <h2 class="Translation">
+                <h1 class="Translation">
                     <pre>{{ card.translation }}</pre>
-                </h2>
+                </h1>
             </div>
 
             <img :src="image" v-if="card.image" @click="playAudio" class="CardImage">
@@ -53,11 +53,13 @@ export default {
 
 .CardBox {
     width: calc(100% - 200px);
-    max-height: calc(100% - 100px);
-    height: 100%;
+    height: calc(100% - 100px);
     padding: 30x;
     margin: auto;
+    margin-top: 15px;
     overflow: hidden;
+    border: 4px dashed red;
+    border-radius: 30px;
 }
 
 .Card img {
@@ -67,7 +69,6 @@ export default {
 }
 
 .Card {
-    border: 4px dashed red;
     padding: 30px;
     height: 100%;
     background-repeat: no-repeat;
@@ -77,6 +78,8 @@ export default {
 h1,
 h2 {
     background-color: white;
+    text-shadow: gray 3px 1px 1px;
+    -webkit-text-stroke: 1px black;
 }
 
 .GuessWhat {

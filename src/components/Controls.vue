@@ -1,35 +1,22 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <!-- Logo -->
-            <a id="logo" class="navbar-brand">
-                <img src="/images/flashlearning.png" width="36" />
-            </a>
-
-            <!-- Navbar Toogler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <a class="navbar-brand" href="#">
-                    <img src="/images/flashlearning.png" width="36" />
-                </a>
-            </button>
-
             <button class="btn btn-primary StartGame" @click="startGame" v-if="cover">Start Game</button>
 
             <!-- Navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="!cover">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Category Name -->
-                    <li class="nav-item CategoryName" :title="categoryName">
-                        {{ categoryName }}
+                    <li class="nav-item" :title="categoryName">
+                        <img src="/images/flashlearning.png" width="24" />
+                        <span class="CategoryName">{{ categoryName }}</span>
                     </li>
 
                     <!-- Previous Card -->
                     <li class="nav-item">
-                        <button id="previousCardButton" class="btn btn-warning" :disabled="cardIndex == 0"
+                        <button id="previousCardButton" class="PreviousCardButton" :disabled="cardIndex == 0"
                             @click="previousCard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
@@ -48,7 +35,7 @@
                         <button id="nextCardButton" class="btn btn-success" :disabled="((cardIndex + 1) >= cardsNumber)"
                             @click.stop.prevent="nextCard">
                             Next Card
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
@@ -60,36 +47,40 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Audio Button -->
                     <li class="nav-item">
-                        <button id="audioButton" title="Press A S or Space" :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
-                            <img src="/images/audio.png" height="36">
+                        <button id="audioButton" title="Press A S or Space" :class="[game.audio ? 'opened' : '']"
+                            :disabled="!card.audio" @click="playAudio">
+                            <img src="/images/audio.png" height="24">
                         </button>
                     </li>
 
                     <!-- Image Button -->
                     <li class="nav-item">
-                        <button id="imageButton" title="Press I or P" :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
-                            <img src="/images/picture.png" height="36">
+                        <button id="imageButton" title="Press I or P" :class="[game.image ? 'opened' : '']"
+                            :disabled="!card.image" @click="toggleImage">
+                            <img src="/images/picture.png" height="24">
                         </button>
                     </li>
 
                     <!-- Name Button -->
                     <li class="nav-item">
-                        <button id="nameButton" title="Press N" :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
-                            <img src="/images/text.png" height="36">
+                        <button id="nameButton" title="Press N" :class="[game.name ? 'opened' : '']" :disabled="!card.name"
+                            @click="toggleName">
+                            <img src="/images/text.png" height="24">
                         </button>
                     </li>
 
                     <!-- Translation Button -->
                     <li class="nav-item">
-                        <button id="translationButton" title="Press T" :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
-                            <img src="/images/translation.png" height="36">
+                        <button id="translationButton" title="Press T" :class="[game.translation ? 'opened' : '']"
+                            :disabled="!card.translation" @click="toggleTranslation">
+                            <img src="/images/translation.png" height="24">
                         </button>
                     </li>
 
                     <!-- Quit Game -->
                     <li class="nav-item">
-                        <button class="btn btn-danger" @click="quitGame" style="font-size:24px">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        <button class="QuitGameButton" @click="quitGame">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-x-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path
@@ -114,7 +105,8 @@ export default {
         },
 
         categoryName() {
-            return store.categoryName;
+            if (store.game.category)
+                return store.game.category.name;
         },
 
         cover() {
@@ -187,23 +179,54 @@ export default {
 </script>
 
 <style scoped>
+nav * {
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
 button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
     margin-left: 15px;
-    font-size: 20px;
+}
+
+button:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
+}
+
+button * {
+    vertical-align: middle;
+}
+
+.opened {
+    background-color: aquamarine;
+}
+
+.PreviousCardButton:not([disabled]):hover {
+    background-color: yellow;
+}
+
+.QuitGameButton:not([disabled]):hover {
+    background-color: crimson;
 }
 
 .StartGame {
     margin: auto;
-    margin-left: calc(50% - 100px);
+    margin-top: 15px;
 }
 
 .CategoryName {
     font-size: 24px;
     font-weight: bolder;
+    padding-left: 15px;
     padding-right: 15px;
-    width: 100px;
-    height: 30px;
-    overflow: hidden;
 }
 
 .CardIndex {

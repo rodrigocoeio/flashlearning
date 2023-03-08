@@ -1,8 +1,5 @@
 <template>
     <controls></controls>
-
-    <br>
-
     <cover v-if="cover"></cover>
     <card v-if="!cover"></card>
 </template>
