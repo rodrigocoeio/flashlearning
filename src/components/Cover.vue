@@ -62,17 +62,17 @@ export default {
     border-radius: 30px;
 }
 
-.Card img {
-    max-height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-}
-
 .Card {
     padding: 30px;
-    height: 100%;
+    height: calc(100% - 90px);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.Card img {
+    max-height: calc(100% - 100px);
+    object-fit: contain;
+    cursor: pointer;
 }
 
 h1,

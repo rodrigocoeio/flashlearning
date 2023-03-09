@@ -92,24 +92,24 @@ export default {
     overflow: hidden;
     border: 4px dashed red;
     border-radius: 30px;
-    display: flex;
-    place-content: center;
-    align-items: center;
-    place-items: center;
-}
-
-.Card img {
-    max-height: 100%;
-    object-fit: contain;
-    cursor: pointer;
 }
 
 .Card {
     padding: 30px;
-    height: 100%;
+    padding-top: 10%;
+    height: calc(100% - 90px);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Card img {
+    max-height: calc(100% - 100px);
+    object-fit: contain;
+    cursor: pointer;
 }
 
 .Card h1 {
+    font-size: 48px;
     text-shadow: gray 3px 1px 1px;
     -webkit-text-stroke: 1px black;
 }
