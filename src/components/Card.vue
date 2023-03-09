@@ -119,6 +119,7 @@ export default {
     height: 100%;
     border: 3px dotted black;
     border-radius: 30px;
+    box-shadow: 5px 5px gray;
 }
 
 .CardCover {
