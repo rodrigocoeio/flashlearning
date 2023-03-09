@@ -75,6 +75,10 @@ export default {
     cursor: pointer;
 }
 
+h1 {
+    font-size: 48px;
+}
+
 h1,
 h2 {
     background-color: white;

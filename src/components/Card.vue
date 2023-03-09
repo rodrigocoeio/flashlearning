@@ -96,7 +96,7 @@ export default {
 
 .Card {
     padding: 30px;
-    padding-top: 10%;
+    padding-top: 5%;
     height: calc(100% - 90px);
     background-repeat: no-repeat;
     background-size: cover;
@@ -112,6 +112,10 @@ export default {
     font-size: 48px;
     text-shadow: gray 3px 1px 1px;
     -webkit-text-stroke: 1px black;
+}
+
+.Card h2 {
+    font-size: 24px;
 }
 
 .Card pre {
