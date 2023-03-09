@@ -7,9 +7,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="!cover">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Category Name -->
-                    <li class="nav-item" :title="categoryName">
-                        <img src="/images/flashlearning.png" width="24" />
-                        <span class="CategoryName">{{ categoryName }}</span>
+                    <li class="nav-item CategoryName" :title="categoryName">
+                        <img src="/images/flashlearning.png" width="44" />
+                        <span>{{ categoryName }}</span>
                     </li>
 
                     <!-- Previous Card -->
@@ -178,11 +178,17 @@ export default {
 </script>
 
 <style scoped>
+nav {
+    margin: 0px;
+}
+
 nav * {
     display: inline-block;
 }
 
-ul {
+nav ul {
+    margin: 0px;
+    margin-bottom: 10px;
     list-style: none;
 }
 
@@ -221,11 +227,16 @@ button * {
     margin-top: 15px;
 }
 
-.CategoryName {
+.CategoryName span {
     font-size: 28px;
     font-weight: bolder;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.CategoryName img {
+    position: relative;
+    top: 10px;
 }
 
 .CardIndex {

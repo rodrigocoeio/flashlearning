@@ -117,6 +117,8 @@ export default {
 
 .CardImage img {
     height: 100%;
+    border: 3px dotted black;
+    border-radius: 30px;
 }
 
 .CardCover {
@@ -127,6 +129,9 @@ export default {
 
 .CardCover img {
     height: 100%;
+    opacity: 0.3;
+    border: 3px dotted black;
+    border-radius: 30px;
 }
 
 .CardText {
