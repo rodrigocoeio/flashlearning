@@ -16,17 +16,16 @@
                     <li class="nav-item">
                         <button id="previousCardButton" class="PreviousCardButton" :disabled="cardIndex == 0"
                             @click="previousCard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
                             </svg>
-                            Previous Card
+                            Previous
                         </button>
                     </li>
 
                     <li class="CardIndex nav-item">
-                        &nbsp;&nbsp;
                         {{ cardsNumber > 0 ? cardIndex + 1 : 0 }} / {{ cardsNumber }}
                     </li>
 
@@ -34,8 +33,8 @@
                     <li class="nav-item">
                         <button id="nextCardButton" class="btn btn-success" :disabled="((cardIndex + 1) >= cardsNumber)"
                             @click.stop.prevent="nextCard">
-                            Next Card
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            Next
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
@@ -49,7 +48,7 @@
                     <li class="nav-item">
                         <button id="audioButton" title="Press A S or Space" :class="[game.audio ? 'opened' : '']"
                             :disabled="!card.audio" @click="playAudio">
-                            <img src="/images/audio.png" height="24">
+                            <img src="/images/audio.png" height="36">
                         </button>
                     </li>
 
@@ -57,7 +56,7 @@
                     <li class="nav-item">
                         <button id="imageButton" title="Press I or P" :class="[game.image ? 'opened' : '']"
                             :disabled="!card.image" @click="toggleImage">
-                            <img src="/images/picture.png" height="24">
+                            <img src="/images/picture.png" height="36">
                         </button>
                     </li>
 
@@ -65,7 +64,7 @@
                     <li class="nav-item">
                         <button id="nameButton" title="Press N" :class="[game.name ? 'opened' : '']" :disabled="!card.name"
                             @click="toggleName">
-                            <img src="/images/text.png" height="24">
+                            <img src="/images/text.png" height="36">
                         </button>
                     </li>
 
@@ -73,14 +72,14 @@
                     <li class="nav-item">
                         <button id="translationButton" title="Press T" :class="[game.translation ? 'opened' : '']"
                             :disabled="!card.translation" @click="toggleTranslation">
-                            <img src="/images/translation.png" height="24">
+                            <img src="/images/translation.png" height="36">
                         </button>
                     </li>
 
                     <!-- Quit Game -->
                     <li class="nav-item">
                         <button class="QuitGameButton" @click="quitGame">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-x-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path
@@ -188,11 +187,11 @@ ul {
 }
 
 button {
-    padding: 8px;
-    font-size: 14px;
+    padding: 7px;
+    font-size: 24px;
     border-radius: 15px;
     cursor: pointer;
-    margin-left: 15px;
+    margin-left: 0px;
 }
 
 button:not([disabled]):hover {
@@ -223,7 +222,7 @@ button * {
 }
 
 .CategoryName {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bolder;
     padding-left: 15px;
     padding-right: 15px;

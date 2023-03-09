@@ -1,14 +1,16 @@
 <template>
     <div class="CardBox">
         <div class="Card" @click="playAudio">
-            <div>
+            <div class="CardText">
                 <h1>{{ card.name }}</h1>
                 <h1 class="Translation">
                     <pre>{{ card.translation }}</pre>
                 </h1>
             </div>
 
-            <img :src="image" v-if="card.image" @click="playAudio" class="CardImage">
+            <div class="CardImage">
+                <img :src="image" v-if="card.image" @click="playAudio" class="CardImage">
+            </div>
         </div>
     </div>
 </template>
@@ -52,27 +54,41 @@ export default {
 }
 
 .CardBox {
+    position: relative;
     width: calc(100% - 200px);
-    height: calc(100% - 100px);
-    padding: 30x;
+    height: calc(100% - 120px);
     margin: auto;
     margin-top: 15px;
     overflow: hidden;
     border: 4px dashed red;
     border-radius: 30px;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    place-items: center;
 }
 
 .Card {
-    padding: 30px;
-    height: calc(100% - 90px);
-    background-repeat: no-repeat;
-    background-size: cover;
+    object-fit: contain;
+    height: 90%;
 }
 
-.Card img {
-    max-height: calc(100% - 100px);
+.CardImage {
+    position: relative;
     object-fit: contain;
-    cursor: pointer;
+    height: calc(100% - 144px);
+}
+
+.CardImage img {
+    height: 100%;
+}
+
+.CardText {
+    padding: 15px;
+    margin: 0px;
+    overflow: hidden;
+    background-color: white;
+    color: black;
 }
 
 h1 {
@@ -84,6 +100,11 @@ h2 {
     background-color: white;
     text-shadow: gray 3px 1px 1px;
     -webkit-text-stroke: 1px black;
+    margin: 0px;
+}
+
+pre {
+    margin: 0px;
 }
 
 .GuessWhat {

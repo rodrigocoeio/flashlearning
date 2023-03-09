@@ -2,7 +2,7 @@
     <div class="CardBox">
         <div class="Card">
 
-            <div>
+            <div class="CardText">
                 <h1 v-show="game.name">{{ card.name }}</h1>
                 <h2 class="Translation" v-show="game.translation">
                     <pre>{{ card.translation }}</pre>
@@ -13,10 +13,14 @@
             </div>
 
             <!-- Cover -->
-            <img :src="coverImage" class="GuessWhat" v-show="!game.image" @click="playAudio">
+            <div class="CardCover" v-if="!game.image">
+                <img :src="coverImage" class="GuessWhat" @click="playAudio">
+            </div>
 
-            <!-- Card Image -->
-            <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
+            <div class="CardImage" v-if="card.image">
+                <!-- Card Image -->
+                <img :src="image" v-show="game.image" @click="playAudio" class="CardImage">
+            </div>
         </div>
     </div>
 </template>
@@ -86,40 +90,66 @@ export default {
 
 .CardBox {
     width: calc(100% - 200px);
-    height: calc(100% - 100px);
+    height: calc(100% - 120px);
     padding: 30x;
     margin: auto;
     overflow: hidden;
-    border: 4px dashed red;
+    border: 4px dashed black;
     border-radius: 30px;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    place-items: center;
 }
 
 .Card {
-    padding: 30px;
-    padding-top: 5%;
-    height: calc(100% - 90px);
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: contain;
+    height: 90%;
 }
 
-.Card img {
-    max-height: calc(100% - 100px);
+.CardImage {
+    position: relative;
     object-fit: contain;
-    cursor: pointer;
+    height: calc(100% - 120px);
+}
+
+.CardImage img {
+    height: 100%;
+}
+
+.CardCover {
+    position: relative;
+    object-fit: contain;
+    height: 100%;
+}
+
+.CardCover img {
+    height: 100%;
+}
+
+.CardText {
+    margin: 0px;
+    overflow: hidden;
+    background-color: white;
+    color: black;
 }
 
 .Card h1 {
     font-size: 48px;
     text-shadow: gray 3px 1px 1px;
     -webkit-text-stroke: 1px black;
+    margin: 0px;
 }
 
 .Card h2 {
-    font-size: 24px;
+    font-size: 30px;
+    margin: 0px;
 }
 
 .Card pre {
-    margin-bottom: 0px;
+    margin: 0px;
 }
 
 .GuessWhat {
