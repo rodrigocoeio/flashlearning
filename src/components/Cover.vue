@@ -70,6 +70,7 @@ export default {
 
 .Card {
     object-fit: contain;
+    width: calc(100% - 100px);
     height: 90%;
 }
 

@@ -91,7 +91,6 @@ export default {
 .CardBox {
     width: calc(100% - 200px);
     height: calc(100% - 120px);
-    padding: 30x;
     margin: auto;
     overflow: hidden;
     border: 4px dashed black;
@@ -108,6 +107,7 @@ export default {
     object-fit: contain;
     cursor: pointer;
     object-fit: contain;
+    width: calc(100% - 100px);
     height: 90%;
 }
 
