@@ -80,6 +80,7 @@ export default {
 }
 
 .CardImage img {
+    max-width: 100%;
     height: 100%;
     border: 3px dotted black;
     border-radius: 30px;

@@ -106,6 +106,8 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: contain;
+    cursor: pointer;
+    object-fit: contain;
     height: 90%;
 }
 
@@ -116,19 +118,20 @@ export default {
 }
 
 .CardImage img {
-    height: 100%;
     border: 3px dotted black;
     border-radius: 30px;
     box-shadow: 5px 5px gray;
+    max-width: 100%;
+    height: 100%;
 }
 
 .CardCover {
     position: relative;
     object-fit: contain;
-    height: 100%;
 }
 
 .CardCover img {
+    max-width: 100%;
     height: 100%;
     opacity: 0.3;
     border: 3px dotted black;
