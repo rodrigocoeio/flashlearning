@@ -128,6 +128,7 @@ export default {
 .CardCover {
     position: relative;
     object-fit: contain;
+    height: 100%;
 }
 
 .CardCover img {
