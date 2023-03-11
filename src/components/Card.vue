@@ -13,7 +13,7 @@
             </div>
 
             <!-- Cover -->
-            <div class="CardCover" v-if="!game.image">
+            <div class="CardCover" v-if="!game.image" :style="card.image ? 'opacity: 0.3' : ''">
                 <img :src="coverImage" class="GuessWhat" @click="playAudio">
             </div>
 
@@ -134,7 +134,6 @@ export default {
 .CardCover img {
     max-width: 100%;
     height: 100%;
-    opacity: 0.3;
     border: 3px dotted black;
     border-radius: 30px;
 }
