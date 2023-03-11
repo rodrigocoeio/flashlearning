@@ -219,7 +219,7 @@ const findCardFile = (name, parent, extension) => {
   return file.fileName;
 };
 
-const folder = process.argv[2] ? process.argv[2] : "./public/cards";
+const folder = process.argv[2] ? process.argv[2] : "./cards";
 const categoriesJsonPath = folder + "/categories.json";
 
 console.log("reading categories and cards...");
