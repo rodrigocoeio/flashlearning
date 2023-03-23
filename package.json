@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node readcards.js && vite",
     "build": "node readcards.js && vite build",
-    "build-cards": "cp /cards dist/cards",
+    "build-cards": "cp /cards /dist/cards && node readcards.js",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "readcards": "node readcards.js"
